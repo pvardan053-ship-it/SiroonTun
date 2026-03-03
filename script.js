@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       priceLabel.textContent = "Սկզբնական գին";
     } else {
       total = nights * nightPrice + sauna * saunaPrice;
-      priceLabel.textContent = "Ընտրված փաթեթ";
+      priceLabel.textContent = "Ընդամենը՝";
     }
 
     totalPriceEl.textContent = total.toLocaleString();
