@@ -1,41 +1,39 @@
-const overnightInput = document.getElementById("overnightNights");
-const saunaInput = document.getElementById("saunaDays");
-const totalPriceEl = document.getElementById("totalPrice");
+document.addEventListener("DOMContentLoaded", function () {
 
-function calculatePrice() {
-    let nights = Number(overnightInput.value);
-    let saunaDays = Number(saunaInput.value);
+    const overnightInput = document.getElementById("overnightNights");
+    const saunaInput = document.getElementById("saunaDays");
+    const totalPriceEl = document.getElementById("totalPrice");
+    const form = document.getElementById("bookingForm");
 
-    let total = 0;
+    function calculatePrice() {
+        let nights = Number(overnightInput.value) || 0;
+        let saunaDays = Number(saunaInput.value) || 0;
 
-    // Գիշերակաց
-    if (nights > 0) {
-        total = nights * 100000; 
-        // 1 օր = 100000
-        // 2 օր = 200000
-        // 3 օր = 300000 և այլն
+        let total = 0;
+
+        if (nights > 0) {
+            total = nights * 100000;
+        }
+
+        total += saunaDays * 20000;
+
+        totalPriceEl.textContent = total.toLocaleString();
     }
 
-    // Շոքեբաղնիք (մնում է նույն ձևով)
-    total += saunaDays * 20000;
+    overnightInput.addEventListener("input", calculatePrice);
+    saunaInput.addEventListener("input", calculatePrice);
 
-    totalPriceEl.textContent = total.toLocaleString();
-}
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
 
-overnightInput.addEventListener("input", calculatePrice);
-saunaInput.addEventListener("input", calculatePrice);
+        let name = document.getElementById("name").value;
+        let phone = document.getElementById("phone").value;
+        let people = document.getElementById("people").value;
+        let nights = overnightInput.value;
+        let sauna = saunaInput.value;
+        let total = totalPriceEl.textContent;
 
-document.getElementById("bookingForm").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let people = document.getElementById("people").value;
-    let nights = overnightInput.value;
-    let sauna = saunaInput.value;
-    let total = totalPriceEl.textContent;
-
-    let message = `Բարև, ցանկանում եմ ամրագրել Siroon Tun։
+        let message = `Բարև, ցանկանում եմ ամրագրել Siroon Tun։
 Անուն՝ ${name}
 Հեռախոս՝ ${phone}
 Մարդկանց քանակ՝ ${people}
@@ -43,6 +41,9 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
 Շոքեբաղնիք օրեր՝ ${sauna}
 Ընդհանուր գումար՝ ${total} դրամ`;
 
-    const smsURL = "sms:094108617?body=" + encodeURIComponent(message);
-    window.location.href = smsURL;
+        const smsURL = "sms:094108617?body=" + encodeURIComponent(message);
+
+        window.location.href = smsURL;
+    });
+
 });
