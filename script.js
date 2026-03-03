@@ -1,26 +1,20 @@
 document.getElementById("bookingForm").addEventListener("submit", function(e){
-  e.preventDefault();
+e.preventDefault();
 
-  var name = document.getElementById("name").value;
-  var phone = document.getElementById("phone").value;
-  var date = document.getElementById("date").value;
-  var guests = document.getElementById("guests").value;
-  var stayType = document.getElementById("stayType").value;
-  var notes = document.getElementById("notes").value;
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let date = document.getElementById("date").value;
+let people = document.getElementById("people").value;
+let time = document.getElementById("time").value;
 
-  var message = "Բարև, ես " + name +
-                " եմ։ Հեռախոս՝ " + phone +
-                "։ Ցանկանում եմ ամրագրել " + date +
-                " ամսաթվով (" + stayType + ")՝ " +
-                guests + " մարդու համար։";
+let message = `Բարև, ցանկանում եմ ամրագրել Siroon Tun։
+Անուն՝ ${name}
+Հեռախոս՝ ${phone}
+Ամսաթիվ՝ ${date}
+Մարդկանց քանակ՝ ${people}
+Ժամանակ՝ ${time}`;
 
-  if(notes){
-    message += " Լրացուցիչ՝ " + notes;
-  }
+let instagramURL = "https://www.instagram.com/direct/t/17841462524804645/?text=" + encodeURIComponent(message);
 
-  var encodedMessage = encodeURIComponent(message);
-
-  var instagramURL = "https://ig.me/m/siroon_tun?text=" + encodedMessage;
-
-  window.open(instagramURL, "_blank");
+window.open(instagramURL, "_blank");
 });
