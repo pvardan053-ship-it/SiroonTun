@@ -148,6 +148,16 @@ nav a:hover{
   gap:10px;
 }
 
+.price-box {
+  font-size:18px;
+  margin-top:10px;
+}
+
+#priceLabel {
+  color:#ff9800;
+  font-weight:600;
+}
+
 footer{
   background:#000;
   color:#aaa;
